@@ -8,19 +8,48 @@ from utils import (
 )
 
 def handle_add_expense():
-    pass
+    date = input('Sanani kiritng: ')
+    category = input('Kategoriya: ')
+    amount = input('Summani kiriting: ')
+    add_expense(date,category,amount)
+    print("Xarajot qo'shildi !")
 
 def handle_view_all():
-    pass
+    expenses = read_all_expenses()
+    if not  expenses:
+        print("Xarajatlar yo'q")
+    else:
+        print('Barcha xarajatlaringiz:')    
+        for exp in expenses:
+            print(format_expense(exp))
 
 def handle_total():
-    pass
+    expenses = read_all_expenses()
+    total = calculate_total(expenses)
+    print("Umumiy xarajat - {total} so'm")
 
 def handle_filter_by_date():
-    pass
+    search_date = input('Qaysi sana: ')
+    expenses = read_all_expenses()
+    filtered = filter_by_date(expenses,search_date)
+    if not filtered:
+        print("No'malum sana ")
+    else:
+        print(f'{search_date} uchun xarajatlar')
+        for exp in expenses:
+            print(format_expense(exp))     
+
 
 def handle_filter_by_category():
-    pass
+    search_category = input('Kategoriyani kiriting: ')
+    expenses = read_all_expenses()
+    filtered = filter_by_category(expenses,search_category)
+    if not filtered:
+        print('Bu kategoriya xarajati topilmadi')
+    else:
+        print(f'{search_category} uchun xarajatlar')
+        for exp in expenses:
+            print(format_expense(exp))    
 
 def main():
     while True:
